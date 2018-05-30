@@ -1,0 +1,30 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+  compile 'com.android.tools.build:gradle:3.0.1'
+  compile group: 'org.javassist', name: 'javassist', version: '3.20.0-GA'
+  //gradle sdk
+  compile gradleApi()
+  //groovy sdk
+  compile localGroovy()
+
+  compile "com.github.javaparser:javaparser-core:3.5.7"
+  compile "com.squareup:javapoet:1.9.0"
+}
+
+repositories {
+  mavenCentral()
+}
+
+group = 'com.xjr.gradl_plugin'
+version = "1.0.0"
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      repository(
+          url: "file://" + project.rootProject.getRootDir().absolutePath + File.separator+"repo")
+    }
+  }
+}
